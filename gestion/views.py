@@ -19,3 +19,9 @@ class RegistroUsuarioView(CreateAPIView):
             'message': 'Usuario creado exitosamente',
             'content': ''
         }, status=status.HTTP_201_CREATED)
+
+class RegistroFiguritasView(ListcreateAPIew):
+    def get(self,request):
+        return Response(data={
+            'message':'Tu coleccion es:'
+        })
