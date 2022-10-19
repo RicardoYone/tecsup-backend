@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE `productos` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nombre` VARCHAR(50) NOT NULL,
     `precio` DOUBLE NOT NULL,
     `unidad_medida` VARCHAR(50) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE `productos` (
 
 -- CreateTable
 CREATE TABLE `usuarios` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nombre` TEXT NOT NULL,
     `dni` VARCHAR(8) NOT NULL,
     `correo` TEXT NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE `usuarios` (
 
 -- CreateTable
 CREATE TABLE `direcciones` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `calle` TEXT NOT NULL,
     `numero` TEXT NOT NULL,
     `dpt` TEXT NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `direcciones` (
 
 -- CreateTable
 CREATE TABLE `pedidos` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `monto_total` DOUBLE NOT NULL,
     `numero_seguimiento` VARCHAR(191) NULL,
     `estado` ENUM('PAGADO', 'CANCELADO', 'ENVIADO', 'RECIBIDO') NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE `pedidos` (
 
 -- CreateTable
 CREATE TABLE `detalle_pedido` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `precio` DOUBLE NOT NULL,
     `cantidad` INTEGER NOT NULL,
     `producto_id` INTEGER NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE `detalle_pedido` (
 
 -- CreateTable
 CREATE TABLE `pedido_eventos` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `titulo` ENUM('PAGADO', 'CANCELADO', 'ENVIADO', 'RECIBIDO') NOT NULL,
     `fecha` DATETIME(3) NOT NULL,
     `pedido_id` INTEGER NOT NULL,

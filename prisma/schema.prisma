@@ -13,7 +13,7 @@ datasource db {
 ////////////////////////////////////////
 
 model Producto {
-  id           Int    @id
+  id           Int    @id @default(autoincrement())
   nombre       String @db.VarChar(50)
   precio       Float
   unidadMedida String @map("unidad_medida") @db.VarChar(50)
@@ -26,7 +26,7 @@ model Producto {
 }
 
 model Usuario {
-  id       Int    @id
+  id       Int    @id @default(autoincrement())
   nombre   String @db.Text
   dni      String @db.VarChar(8)
   correo   String @db.Text
@@ -40,7 +40,7 @@ model Usuario {
 }
 
 model Direccion {
-  id         Int     @id
+  id         Int     @id @default(autoincrement())
   calle      String  @db.Text
   numero     String  @db.Text
   dpt        String  @db.Text
@@ -48,15 +48,14 @@ model Direccion {
   provincia  String  @db.Text
   referencia String? @db.Text
 
-  usuarioId Int @map("usuario_id")
-
-  usuario Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId Int     @map("usuario_id")
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
 
   @@map("direcciones")
 }
 
 model Pedido {
-  id                Int          @id
+  id                Int          @id @default(autoincrement())
   montoTotal        Float        @map("monto_total")
   numeroSeguimiento String?      @map("numero_seguimiento")
   estado            PedidoEstado
@@ -68,15 +67,17 @@ model Pedido {
   DetallePedidos DetallePedido[]
   pedidoEventos  PedidoEvento[]
 
+  // direccion Direccion @relation(fields: [direccionId], references: [id])
   usuario Usuario @relation(fields: [usuarioId], references: [id])
 
   @@map("pedidos")
 }
 
 model DetallePedido {
-  id         Int      @id
-  precio     Float
-  cantidad   Int
+  id       Int   @id @default(autoincrement())
+  precio   Float
+  cantidad Int
+
   productoId Int      @map("producto_id")
   producto   Producto @relation(fields: [productoId], references: [id])
   pedidoId   Int      @map("pedido_id")
@@ -86,7 +87,7 @@ model DetallePedido {
 }
 
 model PedidoEvento {
-  id       Int          @id
+  id       Int          @id @default(autoincrement())
   titulo   PedidoEstado
   fecha    DateTime
   pedidoId Int          @map("pedido_id")
