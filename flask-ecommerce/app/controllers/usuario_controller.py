@@ -5,6 +5,7 @@ from app import db
 import bcrypt
 from flask_jwt_extended import create_access_token
 
+
 class UsuarioController:
     def signUp(self, json_input):
         if not json_input:
@@ -13,13 +14,13 @@ class UsuarioController:
             data = user_schema.load(json_input)
         except ValidationError as err:
             return err.messages, 422
-        
+
         # comprobamos de que no exista un usuario con el mismo email
         user_email = self.__searchUser(data['usuarioEmail'])
         if user_email:
             return {"message": "El usuario ya existe"}, 400
-            
-        #encriptamos la contraseña
+
+        # encriptamos la contraseña
         try:
             hashe = bytes(data['usuarioPassword'], 'utf-8')
             salt = bcrypt.gensalt()
@@ -52,7 +53,7 @@ class UsuarioController:
 
         if not user:
             return {"message": "Credenciales incorrectas"}, 400
-        
+
         try:
             password = bytes(data['usuarioPassword'], 'utf-8')
             salt = bytes(user.usuarioSalt, 'utf-8')
