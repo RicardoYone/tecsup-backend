@@ -74,6 +74,14 @@
     flask db upgrade
 ```
 
+-Luego crearemos las rutas privadas 
+pip install flask-jwt-extended
+
+-Luego instalamos para encriptar las contraseñas
+pip install bcrypt
+
+
+
 # Nuestras variables de entorno (Necesario para que funcione)
 ```text
 FLASK_DEBUG=True
